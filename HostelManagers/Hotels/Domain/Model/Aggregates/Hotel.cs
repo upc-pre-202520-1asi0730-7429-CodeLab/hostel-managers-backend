@@ -25,20 +25,22 @@ public class Hotel
         Phone = string.Empty;
     }
     
-    public Hotel(string name, string images, string address, string phone)
+    public Hotel(string name, string images, string address, string phone, int profileId)
     {
         Name = name;
         Images = images;
         Address = address;
         Phone = phone;
+        ProfileId = profileId;
     }
     
-    public Hotel Update(string name, string images, string address, string phone)
+    public Hotel Update(string name, string images, string address, string phone, int profileId)
     {
         Name = name;
         Images = images;
         Address = address;
         Phone = phone;
+        ProfileId = profileId;
         return this;
     }
 }
