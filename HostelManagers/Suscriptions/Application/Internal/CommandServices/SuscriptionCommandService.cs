@@ -25,14 +25,9 @@ public class SuscriptionCommandService : ISuscriptionCommandService
 
     public async Task<Suscription?> Handle(CreateSuscriptionCommand command)
     {
-        // 1. REGLA DE NEGOCIO: validar con PayPal
         var paymentApproved = await _payPalService.IsPaymentApprovedAsync(command.PayPalTransactionId);
-
-        // 2. Cambia el status según la validación
         var status = paymentApproved ? Status.Suscrito : Status.NoSuscrito;
-
-        // 3. Crea la suscripción con el status correcto
-        var suscription = new Suscription(command.Plan, command.PayPalTransactionId, status);
+        var suscription = new Suscription(command.Plan, command.PayPalTransactionId, command.Statu);
 
         await _suscriptionRepository.AddAsync(suscription);
         await _unitOfWork.CompleteAsync(); 

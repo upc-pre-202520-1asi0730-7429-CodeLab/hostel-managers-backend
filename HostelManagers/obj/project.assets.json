@@ -8143,11 +8143,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\microservicios\\hostel-managers-backend\\HostelManagers\\HostelManagers.csproj",
+      "projectUniqueName": "D:\\fundamentos\\hostel-managers-backend\\HostelManagers\\HostelManagers.csproj",
       "projectName": "HostelManagers",
-      "projectPath": "D:\\microservicios\\hostel-managers-backend\\HostelManagers\\HostelManagers.csproj",
+      "projectPath": "D:\\fundamentos\\hostel-managers-backend\\HostelManagers\\HostelManagers.csproj",
       "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
-      "outputPath": "D:\\microservicios\\hostel-managers-backend\\HostelManagers\\obj\\",
+      "outputPath": "D:\\fundamentos\\hostel-managers-backend\\HostelManagers\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config"
