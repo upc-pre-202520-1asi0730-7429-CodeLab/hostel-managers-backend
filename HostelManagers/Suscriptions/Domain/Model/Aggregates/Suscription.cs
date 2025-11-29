@@ -1,5 +1,4 @@
-﻿using HostelManagers.Accounts.Domain.Model.Aggregates;
-using HostelManagers.Suscriptions.Domain.Model.ValueObjets;
+﻿using HostelManagers.Suscriptions.Domain.Model.ValueObjets;
 
 namespace HostelManagers.Suscriptions.Domain.Model.Aggregates;
 
@@ -10,8 +9,6 @@ public partial class Suscription
     
     public string PayPalTransactionId { get; set; }
     public Status Statu { get; private set; }
-    
-    public ICollection<Profiles> Profiles { get; private set; } = new List<Profiles>();
     
     protected Suscription()
     {

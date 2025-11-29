@@ -1,5 +1,3 @@
-﻿using HostelManagers.Rooms.Domain.Model.ValueObjects;
+﻿namespace HostelManagers.Rooms.Domain.Model.Commands;
 
-namespace HostelManagers.Rooms.Domain.Model.Commands;
-
-public record UpdateRoomCommand(int Id, Typeroom Type, decimal Price);
+public record UpdateRoomCommand(int Id, string Imagen, string Type, decimal Price, int HotelId);

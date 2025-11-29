@@ -1,12 +1,13 @@
 ﻿using HostelManagers.Hotels.Domain.Model.Aggregates;
-using HostelManagers.Rooms.Domain.Model.ValueObjects;
 
 namespace HostelManagers.Rooms.Domain.Model.Aggregates;
 
 public partial class Room
 {
     public int Id { get; set; }
-    public Typeroom Type { get; private set; }
+    
+    public string Imagen { get; set; }
+    public string Type { get; private set; }
     public decimal Price { get; private set; }
     
     public int HotelId { get; set; }              
@@ -14,20 +15,25 @@ public partial class Room
     
     protected Room()
     {
-        Type = Typeroom.Individual;
+        Imagen = string.Empty;
+        Type = String.Empty;
         Price = 0;
     }
     
-    public Room(Typeroom type, decimal price)
+    public Room(string imagen, string type, decimal price, int hotelId)
     {
+        Imagen = imagen;
         Type = type;
         Price = price;
+        HotelId = hotelId;
     }
     
-    public Room Update(Typeroom type, decimal price)
+    public Room Update(string imagen, string type, decimal price, int hotelId)
     {
+        Imagen = imagen;
         Type = type;
         Price = price;
+        HotelId = hotelId;
         return this;
     }
 }

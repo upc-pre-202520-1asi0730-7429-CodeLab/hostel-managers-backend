@@ -1,3 +1,3 @@
 ﻿namespace HostelManagers.Rooms.Domain.Model.Queries;
 
-public record GetAllRoomsQuery();
+public record GetAllRoomsQuery;

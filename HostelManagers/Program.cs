@@ -17,11 +17,6 @@ using HostelManagers.Shared.Infrastructure.Persistence.EFC.Configuration;
 using HostelManagers.Shared.Infrastructure.Persistence.EFC.Repositories;
 using Cortex.Mediator.Commands;
 using Cortex.Mediator.DependencyInjection;
-using HostelManagers.Accounts.Application.Internal.CommandServices;
-using HostelManagers.Accounts.Application.Internal.QueryServices;
-using HostelManagers.Accounts.Domain.Repositories;
-using HostelManagers.Accounts.Domain.Services;
-using HostelManagers.Accounts.Infrastructure.Persistence.EFC.Repositories;
 using HostelManagers.Hotels.Application.Internal.CommandServices;
 using HostelManagers.Hotels.Application.Internal.QueryServices;
 using HostelManagers.Hotels.Domain.Repositories;
@@ -134,11 +129,6 @@ builder.Services.AddScoped<IUserQueryService, UserQueryService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
 builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
-
-// Profile Bounded Context
-builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
-builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>(); 
-builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>(); 
 
 // Hotels Bounded Context
 builder.Services.AddScoped<IHotelRepository, HotelRepository>();

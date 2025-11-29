@@ -1,5 +1,4 @@
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
-using HostelManagers.Accounts.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using HostelManagers.Hotels.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using HostelManagers.IAM.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using HostelManagers.Rooms.Infrastructure.Persistence.EFC.Configuration.Extensions;
@@ -47,7 +46,6 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         base.OnModelCreating(builder);
         
         builder.ApplyIamConfiguration();
-        builder.ApplyProfilesConfiguration();
         builder.ApplySuscriptionsConfiguration();
         builder.ApplyHotelsConfiguration();
         builder.ApplyRoomsConfiguration();

@@ -8,4 +8,4 @@ namespace HostelManagers.IAM.Domain.Model.Queries;
  *     This query object is used to get all users
  * </remarks>
  */
-public record GetAllUsersQuery;
+public record GetAllUsersQuery(); 

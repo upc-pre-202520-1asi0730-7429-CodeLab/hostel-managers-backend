@@ -14,12 +14,10 @@ public static class ModelBuilderExtensions
         builder.Entity<Hotel>().Property(p => p.Images).IsRequired().HasMaxLength(100);
         builder.Entity<Hotel>().Property(p => p.Address).IsRequired().HasMaxLength(100);
         builder.Entity<Hotel>().Property(p => p.Phone).IsRequired().HasMaxLength(20);
-        builder.Entity<Hotel>().Property(p => p.ProfileId).IsRequired();
         builder.Entity<Hotel>()
             .HasMany(h => h.Rooms)
             .WithOne(r => r.Hotel)
             .HasForeignKey(r => r.HotelId)
             .OnDelete(DeleteBehavior.Cascade); 
-
     }
 }

@@ -1,5 +1,3 @@
-﻿using HostelManagers.Rooms.Domain.Model.ValueObjects;
+﻿namespace HostelManagers.Rooms.Domain.Model.Commands;
 
-namespace HostelManagers.Rooms.Domain.Model.Commands;
-
-public record CreateRoomCommand(Typeroom Type, decimal Price);
+public record CreateRoomCommand(string Imagen, string Type, decimal Price, int HotelId);

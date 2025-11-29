@@ -6,5 +6,5 @@ namespace HostelManagers.Rooms.Interfaces.REST.Transform;
 public class RoomResourceFromEntityAssembler
 {
     public static RoomResource ToResourceFromEntity(Room entity) => 
-        new RoomResource(entity.Id, entity.Type, entity.Price);
+        new RoomResource(entity.Id, entity.Imagen, entity.Type, entity.Price, entity.HotelId);
 }

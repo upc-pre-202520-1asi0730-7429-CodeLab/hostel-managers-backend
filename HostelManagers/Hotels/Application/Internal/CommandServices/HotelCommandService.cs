@@ -10,7 +10,7 @@ public class HotelCommandService (IHotelRepository hotelRepository, IUnitOfWork 
 {
     public async Task<Hotel?> Handle(CreateHotelCommand command)
     {
-        var hotel = new Hotel(command.Name, command.Images, command.Address, command.Phone, command.ProfileId);
+        var hotel = new Hotel(command.Name, command.Images, command.Address, command.Phone, command.UserId);
         await hotelRepository.AddAsync(hotel); 
         await unitOfWork.CompleteAsync();
         return hotel;
@@ -20,7 +20,7 @@ public class HotelCommandService (IHotelRepository hotelRepository, IUnitOfWork 
     {
         var hotel = await hotelRepository.FindByIdAsync(command.Id);
         if (hotel == null) return null;
-        hotel.Update(command.Name, command.Images, command.Address, command.Phone, command.ProfileId);
+        hotel.Update(command.Name, command.Images, command.Address, command.Phone, command.UserId);
         hotelRepository.Update(hotel);
         await unitOfWork.CompleteAsync();
         return hotel;

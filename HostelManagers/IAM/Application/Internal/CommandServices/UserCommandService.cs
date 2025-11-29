@@ -55,6 +55,7 @@ public class UserCommandService(
 
         var hashedPassword = hashingService.HashPassword(command.Password);
         var user = new User(command.Username, hashedPassword);
+        user.Update(command.Names, command.Roles);
         try
         {
             await userRepository.AddAsync(user);

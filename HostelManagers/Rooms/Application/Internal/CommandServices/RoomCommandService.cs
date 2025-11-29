@@ -10,7 +10,7 @@ public class RoomCommandService (IRoomRepository roomRepository, IUnitOfWork uni
 {
     public async Task<Room?> Handle(CreateRoomCommand command)
     {
-        var hotel = new Room(command.Type, command.Price);
+        var hotel = new Room(command.Imagen,command.Type, command.Price, command.HotelId);
         await roomRepository.AddAsync(hotel); 
         await unitOfWork.CompleteAsync();
         return hotel;
@@ -20,7 +20,7 @@ public class RoomCommandService (IRoomRepository roomRepository, IUnitOfWork uni
     {
         var hotel = await roomRepository.FindByIdAsync(command.Id);
         if (hotel == null) return null;
-        hotel.Update(command.Type, command.Price);
+        hotel.Update(command.Imagen,command.Type, command.Price, command.HotelId);
         roomRepository.Update(hotel);
         await unitOfWork.CompleteAsync();
         return hotel;

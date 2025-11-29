@@ -13,9 +13,12 @@ public static class ModelBuilderExtensions
         builder.Entity<User>().Property(u => u.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<User>().Property(u => u.Username).IsRequired();
         builder.Entity<User>().Property(u => u.PasswordHash).IsRequired();
+        builder.Entity<User>().Property(u => u.Names).IsRequired();
+        builder.Entity<User>().Property(u => u.Roles).IsRequired();
         builder.Entity<User>()
-            .HasMany(u => u.Profiles)
-            .WithOne(p => p.User)
-            .HasForeignKey(p => p.UserId);
+            .HasMany(u => u.Hotels)
+            .WithOne(u => u.User)
+            .HasForeignKey(u => u.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using HostelManagers.Accounts.Domain.Model.Aggregates;
+using HostelManagers.Hotels.Domain.Model.Aggregates;
 
 namespace HostelManagers.IAM.Domain.Model.Aggregates;
 
@@ -22,7 +22,11 @@ public class User(string username, string passwordHash)
 
     [JsonIgnore] public string PasswordHash { get; private set; } = passwordHash;
     
-    public ICollection<Profiles> Profiles { get; set; } = new List<Profiles>();
+    public string Names { get; set; } = string.Empty;
+    
+    public string Roles { get; set; } = string.Empty;
+    
+    public ICollection<Hotel> Hotels { get; private set; } = new List<Hotel>();
 
     /**
      * <summary>
@@ -47,6 +51,13 @@ public class User(string username, string passwordHash)
     public User UpdatePasswordHash(string passwordHash)
     {
         PasswordHash = passwordHash;
+        return this;
+    }
+    
+    public User Update (string names, string roles)
+    {
+        this.Names = names;
+        this.Roles = roles;
         return this;
     }
 }

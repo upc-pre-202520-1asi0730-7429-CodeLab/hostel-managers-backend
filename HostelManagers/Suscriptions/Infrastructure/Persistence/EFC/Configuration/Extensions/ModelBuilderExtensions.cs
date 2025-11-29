@@ -13,10 +13,5 @@ public static class ModelBuilderExtensions
         builder.Entity<Suscription>().Property(p => p.Plan).IsRequired();
         builder.Entity<Suscription>().Property(p => p.PayPalTransactionId).IsRequired();
         builder.Entity<Suscription>().Property(p => p.Statu).IsRequired();
-        builder.Entity<Suscription>()
-            .HasMany(s => s.Profiles)
-            .WithOne(p => p.Suscription)
-            .HasForeignKey(p => p.SuscriptionId);
-
     }
 }
