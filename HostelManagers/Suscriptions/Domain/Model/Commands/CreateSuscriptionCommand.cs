@@ -2,4 +2,9 @@
 
 namespace HostelManagers.Suscriptions.Domain.Model.Commands;
 
-public record CreateSuscriptionCommand(Plans Plan, string PayPalTransactionId, Status Statu);
+public record CreateSuscriptionCommand(
+    string UserId, // <-- ¡Añadido!
+    Plans Plan, 
+    string PayPalTransactionId, 
+    Status Statu
+);  

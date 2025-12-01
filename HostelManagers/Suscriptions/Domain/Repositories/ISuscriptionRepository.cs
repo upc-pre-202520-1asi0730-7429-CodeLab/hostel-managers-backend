@@ -5,5 +5,5 @@ namespace HostelManagers.Suscriptions.Domain.Repositories;
 
 public interface ISuscriptionRepository : IBaseRepository<Suscription>
 {
-    
+    Task<Suscription?> GetByUserIdAsync(string userId);
 }

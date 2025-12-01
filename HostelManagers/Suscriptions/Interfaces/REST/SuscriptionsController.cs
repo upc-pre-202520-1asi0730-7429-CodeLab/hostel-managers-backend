@@ -34,4 +34,25 @@ public class SuscriptionsController (ISuscriptionCommandService suscriptionComma
         var resources = suscription.Select(SuscriptionResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(resources);
     }
+    
+    // 🆕 Nuevo Endpoint para obtener Suscripción por UserId
+    [HttpGet("{userId}")] // Define la ruta para incluir el userId
+    [SwaggerOperation("Get suscription by UserId", OperationId = "GetSuscriptionByUserId")]
+    [SwaggerResponse(200, "Suscription found", typeof(SuscriptionResource))]
+    [SwaggerResponse(404, "Suscription not found")]
+    public async Task<IActionResult> GetSuscriptionByUserId(string userId)
+    {
+        // 1. Crea la query con el parámetro recibido
+        var query = new GetSuscriptionByUserId(userId);
+        
+        // 2. Llama al servicio de consulta
+        var suscription = await suscriptionQueryService.Handle(query);
+        
+        // 3. Verifica si se encontró la suscripción
+        if (suscription == null) return NotFound();
+        
+        // 4. Mapea la entidad al recurso y retorna 200 OK
+        var resource = SuscriptionResourceFromEntityAssembler.ToResourceFromEntity(suscription);
+        return Ok(resource);
+    }
 }

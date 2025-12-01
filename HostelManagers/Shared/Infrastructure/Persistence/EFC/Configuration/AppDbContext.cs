@@ -1,6 +1,7 @@
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using HostelManagers.Hotels.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using HostelManagers.IAM.Infrastructure.Persistence.EFC.Configuration.Extensions;
+using HostelManagers.Reservations.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using HostelManagers.Rooms.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using HostelManagers.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using HostelManagers.Suscriptions.Infrastructure.Persistence.EFC.Configuration.Extensions;
@@ -48,8 +49,9 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.ApplyIamConfiguration();
         builder.ApplySuscriptionsConfiguration();
         builder.ApplyHotelsConfiguration();
-        builder.ApplyRoomsConfiguration();
-
+        builder.ApplyRoomsConfiguration();  
+// 🆕 2. Aplicar la configuración de la entidad Reservation
+        builder.ApplyReservationsConfiguration();
         // General Naming Convention for the database objects
         builder.UseSnakeCaseNamingConvention();
     }

@@ -22,6 +22,11 @@ using HostelManagers.Hotels.Application.Internal.QueryServices;
 using HostelManagers.Hotels.Domain.Repositories;
 using HostelManagers.Hotels.Domain.Services;
 using HostelManagers.Hotels.Infrastructure.Persistence.EFC.Repositories;
+using HostelManagers.Reservations.Application.Internal.CommandServices;
+using HostelManagers.Reservations.Application.Internal.QueryServices;
+using HostelManagers.Reservations.Domain.Repositories;
+using HostelManagers.Reservations.Domain.Services;
+using HostelManagers.Reservations.Infrastructure.Persistence.EFC.Repositories;
 using HostelManagers.Rooms.Application.Internal.CommandServices;
 using HostelManagers.Rooms.Application.Internal.QueryServices;
 using HostelManagers.Rooms.Domain.Repositories;
@@ -145,6 +150,11 @@ builder.Services.AddScoped<ISuscriptionRepository, SuscriptionRepository>();
 builder.Services.AddScoped<ISuscriptionCommandService, SuscriptionCommandService>();
 builder.Services.AddScoped<ISuscriptionQueryService, SuscriptionQueryService>();
 builder.Services.AddScoped<IPayPalService, PayPalService>();
+
+// Reservation Bounded Context
+builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+builder.Services.AddScoped<IReservationCommandService, ReservationCommandService>();
+builder.Services.AddScoped<IReservationQueryService, ReservationQueryService>();
 
 // Add Mediator Injection Configuration
 builder.Services.AddScoped(typeof(ICommandPipelineBehavior<>), typeof(LoggingCommandBehavior<>));

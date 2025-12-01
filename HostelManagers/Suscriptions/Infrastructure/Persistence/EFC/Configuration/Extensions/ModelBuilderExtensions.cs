@@ -10,8 +10,9 @@ public static class ModelBuilderExtensions
         // Profiles Context
         builder.Entity<Suscription>().HasKey(p => p.Id);
         builder.Entity<Suscription>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Suscription>().Property(p => p.UserId).IsRequired();
         builder.Entity<Suscription>().Property(p => p.Plan).IsRequired();
         builder.Entity<Suscription>().Property(p => p.PayPalTransactionId).IsRequired();
         builder.Entity<Suscription>().Property(p => p.Statu).IsRequired();
     }
-}
+}   

@@ -6,4 +6,5 @@ namespace HostelManagers.Suscriptions.Domain.Services;
 public interface ISuscriptionQueryService
 {
     Task<IEnumerable<Suscription>> Handle(GetAllSuscriptionQuery query);
+    Task<Suscription?> Handle(GetSuscriptionByUserId query);
 }

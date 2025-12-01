@@ -2,4 +2,10 @@
 
 namespace HostelManagers.Suscriptions.Interfaces.REST.Resources;
 
-public record SuscriptionResource(int Id, Plans Plan, string PayPalTransactionId, Status Statu);
+public record SuscriptionResource(
+    int Id, 
+    string UserId, // <-- ¡Añadido!
+    Plans Plan, 
+    string PayPalTransactionId, 
+    Status Statu
+);

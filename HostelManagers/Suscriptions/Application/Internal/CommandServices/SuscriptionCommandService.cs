@@ -25,12 +25,28 @@ public class SuscriptionCommandService : ISuscriptionCommandService
 
     public async Task<Suscription?> Handle(CreateSuscriptionCommand command)
     {
+        // 1. Verificar el pago con el servicio externo
         var paymentApproved = await _payPalService.IsPaymentApprovedAsync(command.PayPalTransactionId);
-        var status = paymentApproved ? Status.Suscrito : Status.NoSuscrito;
-        var suscription = new Suscription(command.Plan, command.PayPalTransactionId, command.Statu);
+    
+        // 2. Determinar el estado basado en la verificación (Lógica del Dominio)
+        // Usamos el estado calculado, no el que viene en el comando.
+        var statusDetermined = paymentApproved ? Status.Suscrito : Status.NoSuscrito;
+    
+        // 3. Crear el agregado Suscription.
+        // **Ajuste Importante:**
+        // - Debes incluir el `UserId` (asumiendo que está en tu comando, por ejemplo, `command.UserId`).
+        // - Debes usar la variable de estado `statusDetermined` y no `command.Statu`.
+        var suscription = new Suscription(
+            command.UserId, // <<-- Necesitas agregar UserId al comando si no lo tiene
+            command.Plan, 
+            command.PayPalTransactionId, 
+            statusDetermined // <--- ¡USAR ESTE VALOR CALCULADO!
+        );
 
+        // 4. Persistir y confirmar
         await _suscriptionRepository.AddAsync(suscription);
         await _unitOfWork.CompleteAsync(); 
+    
         return suscription;
     }
 }

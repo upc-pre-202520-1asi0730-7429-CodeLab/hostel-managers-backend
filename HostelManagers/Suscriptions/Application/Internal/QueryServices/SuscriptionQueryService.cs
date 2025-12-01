@@ -11,4 +11,11 @@ public class SuscriptionQueryService (ISuscriptionRepository suscriptionReposito
     {
         return await suscriptionRepository.ListAsync(); 
     }
+    
+    // Método corregido
+    public async Task<Suscription?> Handle(GetSuscriptionByUserId query)
+    {
+        // ⭐ Corregido: Usar GetByUserIdAsync en lugar de FindByIdAsync
+        return await suscriptionRepository.GetByUserIdAsync(query.UserId);
+    }
 }

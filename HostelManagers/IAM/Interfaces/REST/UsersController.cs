@@ -64,4 +64,23 @@ public class UsersController(IUserQueryService userQueryService) : ControllerBas
         var userResources = users.Select(UserResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(userResources);
     }
+    
+    
+    [HttpGet("{userId}/role")]
+    [SwaggerOperation("Get user role by Id", OperationId = "GetUserRoleById")]
+    public async Task<IActionResult> GetUserRoleById(int userId)
+    {
+        var query = new GetUserByIdQuery(userId);
+        var user = await userQueryService.Handle(query);
+
+        if (user == null)
+        {
+            return NotFound($"User with ID {userId} not found.");
+        }
+
+        // ⭐ Aquí es donde se usa el transformador para obtener solo el rol
+        var resource = UserRoleResourceFromEntityAssembler.ToResourceFromEntity(user); 
+
+        return Ok(resource);
+    }
 }
