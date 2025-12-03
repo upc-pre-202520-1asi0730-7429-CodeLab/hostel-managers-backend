@@ -12,11 +12,11 @@ public partial class Room
     
     public int HotelId { get; set; }              
     public Hotel Hotel { get; set; }              
-    
+  
     protected Room()
     {
         Imagen = string.Empty;
-        Type = String.Empty;
+        Type = string.Empty;
         Price = 0;
     }
     
