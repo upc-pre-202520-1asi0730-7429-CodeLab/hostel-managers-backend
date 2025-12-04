@@ -16,13 +16,22 @@ namespace HostelManagers.Suscriptions.Interfaces.REST;
 public class SuscriptionsController (ISuscriptionCommandService suscriptionCommandService, ISuscriptionQueryService suscriptionQueryService) : ControllerBase
 {
     [HttpPost]
-    [SwaggerOperation("Create a profile", OperationId = "CreateCar")]
-    [SwaggerResponse(201, "Profile created", typeof(SuscriptionResource))]
+    [SwaggerOperation("Create a suscription", OperationId = "CreateSuscription")]
+    [SwaggerResponse(201, "Suscription created", typeof(SuscriptionResource))]
+    [SwaggerResponse(400, "Business rule violation")]
     public async Task<IActionResult> CreateSuscription([FromBody] CreateSuscriptionCommand command)
     {
-        var suscription = await suscriptionCommandService.Handle(command);
-        var resource = SuscriptionResourceFromEntityAssembler.ToResourceFromEntity(suscription!);
-        return CreatedAtAction(nameof(GetAllSuscriptions), new { id = suscription!.Id }, new { resource });
+        try 
+        {
+            var suscription = await suscriptionCommandService.Handle(command);
+            var resource = SuscriptionResourceFromEntityAssembler.ToResourceFromEntity(suscription!);
+            
+            return CreatedAtAction(nameof(GetSuscriptionById), new { id = suscription!.Id }, resource);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
     
     [HttpGet]
@@ -33,5 +42,14 @@ public class SuscriptionsController (ISuscriptionCommandService suscriptionComma
         var suscription = await suscriptionQueryService.Handle(new GetAllSuscriptionQuery());
         var resources = suscription.Select(SuscriptionResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(resources);
+    }
+
+    [HttpGet("{id:int}")]
+    [SwaggerOperation("Get suscription by Id", OperationId = "GetSuscriptionById")]
+    [SwaggerResponse(200, "Suscription found", typeof(SuscriptionResource))]
+    [SwaggerResponse(404, "Suscription not found")]
+    public async Task<IActionResult> GetSuscriptionById(int id)
+    {
+        return Ok(); // Placeholder para que compile si no tienes el Query aún
     }
 }

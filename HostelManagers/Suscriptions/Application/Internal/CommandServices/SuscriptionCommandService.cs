@@ -26,8 +26,10 @@ public class SuscriptionCommandService : ISuscriptionCommandService
     public async Task<Suscription?> Handle(CreateSuscriptionCommand command)
     {
         var paymentApproved = await _payPalService.IsPaymentApprovedAsync(command.PayPalTransactionId);
-        var status = paymentApproved ? Status.Suscrito : Status.NoSuscrito;
-        var suscription = new Suscription(command.Plan, command.PayPalTransactionId, command.Statu);
+        
+        var finalStatus = paymentApproved ? Status.Suscrito : Status.NoSuscrito;
+
+        var suscription = new Suscription(command.Plan, command.PayPalTransactionId, finalStatus);
 
         await _suscriptionRepository.AddAsync(suscription);
         await _unitOfWork.CompleteAsync(); 
